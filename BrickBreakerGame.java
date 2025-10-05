@@ -116,6 +116,31 @@ public abstract class BrickBreakerGame extends JPanel implements ActionListener,
             by = 0;
             bdy = Math.abs(bdy);
         }
+
+
+         if (by + B_SIZE >= HEIGHT - 50 && 
+            by <= HEIGHT - 35 &&
+            bx + B_SIZE >= padX && 
+            bx <= padX + PAD_W) {
+            
+            double hitPos = (bx - padX) / (double) PAD_W; 
+            double angle = (hitPos - 0.5) * Math.PI / 3;
+
+            double speed = Math.sqrt(bdx * bdx + bdy * bdy);
+            bdx = speed * Math.sin(angle);
+            bdy = -speed * Math.cos(angle);
+
+            if (Math.abs(bdy) < 2) {
+                bdy = (bdy > 0) ? 2 : -2;
+            }
+
+            by = HEIGHT - 50 - B_SIZE;
+        }
+
+        if (by >= HEIGHT) {
+            playing = false;
+        }
+
     }
 }
 
