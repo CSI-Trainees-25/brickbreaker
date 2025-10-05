@@ -2,9 +2,10 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public abstract class BrickBreakerGame extends JPanel implements ActionListener, KeyListener {
+public class BrickBreakerGame extends JPanel implements ActionListener, KeyListener {
 
-     private static final int WIDTH = 600, HEIGHT = 600;
+   
+    private static final int WIDTH = 600, HEIGHT = 600;
 
     
     private int padX = 250;
@@ -20,17 +21,13 @@ public abstract class BrickBreakerGame extends JPanel implements ActionListener,
     private static final int BW = 70, BH = 25, GAP = 5;
     private boolean[][] brick;
     
-     private boolean playing = true;
+   
+    private boolean playing = true;
     private Timer timer;
     private int score = 0;
     private int leftBricks;
 
-
-
-
-
-
-       public BrickBreakerGame() {
+    public BrickBreakerGame() {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(Color.BLACK);
         setFocusable(true);
@@ -49,7 +46,7 @@ public abstract class BrickBreakerGame extends JPanel implements ActionListener,
         timer.start();
     }
 
-  
+   
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -72,14 +69,14 @@ public abstract class BrickBreakerGame extends JPanel implements ActionListener,
             }
         }
 
-
-          g.setColor(Color.WHITE);
+        
+        g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.BOLD, 18));
         g.drawString("Score: " + score, 20, 25);
         g.drawString("Bricks: " + leftBricks, WIDTH - 120, 25);
 
-
-         if (!playing && leftBricks > 0) {
+        
+        if (!playing && leftBricks > 0) {
             g.setFont(new Font("Arial", Font.BOLD, 36));
             g.drawString("GAME OVER", WIDTH / 2 - 110, HEIGHT / 2);
             g.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -96,8 +93,7 @@ public abstract class BrickBreakerGame extends JPanel implements ActionListener,
         }
     }
 
-
-     private void moveGame() {
+    private void moveGame() {
         if (!playing) return;
 
        
@@ -117,8 +113,8 @@ public abstract class BrickBreakerGame extends JPanel implements ActionListener,
             bdy = Math.abs(bdy);
         }
 
-
-         if (by + B_SIZE >= HEIGHT - 50 && 
+       
+        if (by + B_SIZE >= HEIGHT - 50 && 
             by <= HEIGHT - 35 &&
             bx + B_SIZE >= padX && 
             bx <= padX + PAD_W) {
@@ -141,8 +137,7 @@ public abstract class BrickBreakerGame extends JPanel implements ActionListener,
             playing = false;
         }
 
-
-         boolean hit = false;
+        boolean hit = false;
         for (int i = 0; i < ROW && !hit; i++) {
             for (int j = 0; j < COL && !hit; j++) {
                 if (brick[i][j]) {
@@ -182,20 +177,15 @@ public abstract class BrickBreakerGame extends JPanel implements ActionListener,
             }
         }
 
-
         repaint();
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
         moveGame();
     }
 
-
-
-
-     @Override
+    @Override
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
 
@@ -210,8 +200,7 @@ public abstract class BrickBreakerGame extends JPanel implements ActionListener,
         }
     }
 
-
-     private void restartGame() {
+    private void restartGame() {
         bx = 300;
         by = 300;
         double angle = Math.random() * Math.PI / 2 + Math.PI / 4;
@@ -231,10 +220,6 @@ public abstract class BrickBreakerGame extends JPanel implements ActionListener,
         playing = true;
     }
 
-
-
-
-    
     @Override 
     public void keyReleased(KeyEvent e) {}
     
@@ -253,6 +238,3 @@ public abstract class BrickBreakerGame extends JPanel implements ActionListener,
         game.requestFocusInWindow();
     }
 }
-
-
-
