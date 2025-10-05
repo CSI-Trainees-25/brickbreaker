@@ -72,4 +72,27 @@ public abstract class BrickBreakerGame extends JPanel implements ActionListener,
             }
         }
 
+
+          g.setColor(Color.WHITE);
+        g.setFont(new Font("Arial", Font.BOLD, 18));
+        g.drawString("Score: " + score, 20, 25);
+        g.drawString("Bricks: " + leftBricks, WIDTH - 120, 25);
+
+
+         if (!playing && leftBricks > 0) {
+            g.setFont(new Font("Arial", Font.BOLD, 36));
+            g.drawString("GAME OVER", WIDTH / 2 - 110, HEIGHT / 2);
+            g.setFont(new Font("Arial", Font.PLAIN, 20));
+            g.drawString("Final Score: " + score, WIDTH / 2 - 70, HEIGHT / 2 + 40);
+            g.drawString("Press R to Restart", WIDTH / 2 - 85, HEIGHT / 2 + 70);
+        } else if (leftBricks == 0) {
+            g.setColor(Color.GREEN);
+            g.setFont(new Font("Arial", Font.BOLD, 36));
+            g.drawString("YOU WIN!", WIDTH / 2 - 90, HEIGHT / 2);
+            g.setFont(new Font("Arial", Font.PLAIN, 20));
+            g.drawString("Score: " + score, WIDTH / 2 - 50, HEIGHT / 2 + 40);
+            g.drawString("Press R to Play Again", WIDTH / 2 - 100, HEIGHT / 2 + 70);
+            playing = false;
+        }
+    }
 }
