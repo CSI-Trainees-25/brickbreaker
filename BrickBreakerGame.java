@@ -49,5 +49,27 @@ public abstract class BrickBreakerGame extends JPanel implements ActionListener,
         timer.start();
     }
 
+  
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        g.setColor(Color.WHITE);
+        g.fillRect(padX, HEIGHT - 50, PAD_W, PAD_H);
+
+       
+        g.setColor(Color.RED);
+        g.fillOval((int) bx, (int) by, B_SIZE, B_SIZE);
+
+        for (int i = 0; i < ROW; i++) {
+            for (int j = 0; j < COL; j++) {
+                if (brick[i][j]) {
+                    g.setColor(new Color(100, 150, 255));
+                    g.fillRect(j * (BW + GAP) + GAP, 
+                              i * (BH + GAP) + GAP + 50, 
+                              BW, BH);
+                }
+            }
+        }
 
 }
