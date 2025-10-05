@@ -192,6 +192,23 @@ public abstract class BrickBreakerGame extends JPanel implements ActionListener,
         moveGame();
     }
 
+
+
+
+     @Override
+    public void keyPressed(KeyEvent e) {
+        int key = e.getKeyCode();
+
+        if (key == KeyEvent.VK_LEFT && padX > 0) {
+            padX -= 20;
+        }
+        if (key == KeyEvent.VK_RIGHT && padX < WIDTH - PAD_W) {
+            padX += 20;
+        }
+        if (key == KeyEvent.VK_R && !playing) {
+            restartGame();
+        }
+    }
 }
 
 
