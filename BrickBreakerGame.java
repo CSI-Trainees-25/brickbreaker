@@ -185,6 +185,13 @@ public abstract class BrickBreakerGame extends JPanel implements ActionListener,
 
         repaint();
     }
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        moveGame();
+    }
+
 }
 
 
