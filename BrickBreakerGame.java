@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -23,5 +24,30 @@ public abstract class BrickBreakerGame extends JPanel implements ActionListener,
     private Timer timer;
     private int score = 0;
     private int leftBricks;
+
+
+
+
+
+
+       public BrickBreakerGame() {
+        setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        setBackground(Color.BLACK);
+        setFocusable(true);
+        addKeyListener(this);
+
+        brick = new boolean[ROW][COL];
+        leftBricks = ROW * COL;
+
+        for (int i = 0; i < ROW; i++) {
+            for (int j = 0; j < COL; j++) {
+                brick[i][j] = true;
+            }
+        }
+
+        timer = new Timer(16, this);
+        timer.start();
+    }
+
 
 }
