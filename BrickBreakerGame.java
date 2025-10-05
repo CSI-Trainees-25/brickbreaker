@@ -230,6 +230,28 @@ public abstract class BrickBreakerGame extends JPanel implements ActionListener,
         padX = 250;
         playing = true;
     }
+
+
+
+
+    
+    @Override 
+    public void keyReleased(KeyEvent e) {}
+    
+    @Override 
+    public void keyTyped(KeyEvent e) {}
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Brick Breaker Game");
+        BrickBreakerGame game = new BrickBreakerGame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.add(game);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        game.requestFocusInWindow();
+    }
 }
 
 
