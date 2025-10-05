@@ -209,6 +209,27 @@ public abstract class BrickBreakerGame extends JPanel implements ActionListener,
             restartGame();
         }
     }
+
+
+     private void restartGame() {
+        bx = 300;
+        by = 300;
+        double angle = Math.random() * Math.PI / 2 + Math.PI / 4;
+        double speed = 4.0;
+        bdx = speed * Math.cos(angle);
+        bdy = -speed * Math.sin(angle);
+
+        for (int i = 0; i < ROW; i++) {
+            for (int j = 0; j < COL; j++) {
+                brick[i][j] = true;
+            }
+        }
+
+        score = 0;
+        leftBricks = ROW * COL;
+        padX = 250;
+        playing = true;
+    }
 }
 
 
