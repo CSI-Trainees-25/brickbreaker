@@ -141,6 +141,49 @@ public abstract class BrickBreakerGame extends JPanel implements ActionListener,
             playing = false;
         }
 
+
+         boolean hit = false;
+        for (int i = 0; i < ROW && !hit; i++) {
+            for (int j = 0; j < COL && !hit; j++) {
+                if (brick[i][j]) {
+                    int brickX = j * (BW + GAP) + GAP;
+                    int brickY = i * (BH + GAP) + GAP + 50;
+
+                    Rectangle ballRect = new Rectangle((int) bx, (int) by, B_SIZE, B_SIZE);
+                    Rectangle brickRect = new Rectangle(brickX, brickY, BW, BH);
+
+                    if (ballRect.intersects(brickRect)) {
+                        brick[i][j] = false;
+                        leftBricks--;
+                        score += 10;
+                        hit = true;
+
+                        double ballCenterX = bx + B_SIZE / 2.0;
+                        double ballCenterY = by + B_SIZE / 2.0;
+                        double brickCenterX = brickX + BW / 2.0;
+                        double brickCenterY = brickY + BH / 2.0;
+
+                        double dx = ballCenterX - brickCenterX;
+                        double dy = ballCenterY - brickCenterY;
+                        double overlapX = (B_SIZE / 2.0 + BW / 2.0) - Math.abs(dx);
+                        double overlapY = (B_SIZE / 2.0 + BH / 2.0) - Math.abs(dy);
+
+                        if (overlapX < overlapY) {
+                            bdx = -bdx;
+                            if (dx > 0) bx = brickX + BW + 1;
+                            else bx = brickX - B_SIZE - 1;
+                        } else {
+                            bdy = -bdy;
+                            if (dy > 0) by = brickY + BH + 1;
+                            else by = brickY - B_SIZE - 1;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        repaint();
     }
 }
 
