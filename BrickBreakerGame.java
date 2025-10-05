@@ -95,4 +95,29 @@ public abstract class BrickBreakerGame extends JPanel implements ActionListener,
             playing = false;
         }
     }
+
+
+     private void moveGame() {
+        if (!playing) return;
+
+       
+        bx += bdx;
+        by += bdy;
+
+        if (bx <= 0) {
+            bx = 0;
+            bdx = Math.abs(bdx);
+        } else if (bx >= WIDTH - B_SIZE) {
+            bx = WIDTH - B_SIZE;
+            bdx = -Math.abs(bdx);
+        }
+
+        if (by <= 0) {
+            by = 0;
+            bdy = Math.abs(bdy);
+        }
+    }
 }
+
+
+
