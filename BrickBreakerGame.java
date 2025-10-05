@@ -1,8 +1,7 @@
-import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class BrickBreakerGame extends JPanel implements ActionListener, KeyListener {
+public abstract class BrickBreakerGame extends JPanel implements ActionListener, KeyListener {
 
      private static final int WIDTH = 600, HEIGHT = 600;
 
@@ -20,4 +19,9 @@ public class BrickBreakerGame extends JPanel implements ActionListener, KeyListe
     private static final int BW = 70, BH = 25, GAP = 5;
     private boolean[][] brick;
     
+     private boolean playing = true;
+    private Timer timer;
+    private int score = 0;
+    private int leftBricks;
+
 }
